@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOC Monitoring Dashboard (Simulated)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>NOC Monitoring Dashboard</h1>
+    <p class="note">Practice project. All devices and alarms are simulated, nothing real is monitored.</p>
+    <div class="controls">
+      <button id="toggleBtn">Pause</button>
+      <button id="failBtn" class="danger">Simulate Core Router Failure</button>
+      <button id="restoreBtn">Restore Core Router</button>
+      <button id="ackAllBtn">Acknowledge All</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="cards">
+      <div class="card"><span id="countTotal">0</span><label>Total</label></div>
+      <div class="card up"><span id="countUp">0</span><label>Up</label></div>
+      <div class="card degraded"><span id="countDegraded">0</span><label>Degraded</label></div>
+      <div class="card down"><span id="countDown">0</span><label>Down</label></div>
+      <div class="card unreachable"><span id="countUnreachable">0</span><label>Unreachable</label></div>
+    </section>
+
+    <section>
+      <h2>Devices</h2>
+      <div id="deviceGrid" class="grid"></div>
+    </section>
+
+    <section>
+      <h2>Alarm Feed</h2>
+      <div class="filters">
+        <label>Severity:
+          <select id="sevFilter">
+            <option value="All">All</option>
+            <option value="Critical">Critical</option>
+            <option value="Major">Major</option>
+            <option value="Warning">Warning</option>
+            <option value="Clear">Clear</option>
+          </select>
+        </label>
+        <label><input type="checkbox" id="hideAcked"> Hide acknowledged</label>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Time</th><th>Severity</th><th>Device</th><th>Message</th><th>Impact</th><th>Root cause</th><th>Action</th></tr>
+          </thead>
+          <tbody id="alarmBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
